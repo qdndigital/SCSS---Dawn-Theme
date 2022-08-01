@@ -10,20 +10,18 @@ const browserSync = require('browser-sync').create();
 const babel = require("gulp-babel");
 
 function scss() {
-  return src("./assets/src/scss/**/*.scss")
+  return src("./src/scss/**/*.scss")
     .pipe(plumber())
     .pipe(rename(function (path) { 
       if (path.basename.startsWith('_')) {
         // remove _*.scss
         path.basename = path.basename.slice(1);
+         // add prefix (parent folder + file name .scss)
+        path.basename = path.dirname + "-" + path.basename
       }
-      // add prefix (parent folder + file name .scss)
-      const prefixFile = path.dirname;
-      path.basename = prefixFile + "-" + path.basename
       // dirname
       path.dirname = './'
     }))
-
     .pipe(sass({ outputStyle: "compressed" }))
     .pipe(sass().on("error", sass.logError))
     .pipe(dest("./assets"))
@@ -33,7 +31,6 @@ function scss() {
 function minifyCss() {
   return src("./assets/*.css")
     .pipe(cleancss({ compatibility: "ie8" }))
-    .pipe(rename({ suffix: ".min" }))
     .pipe(dest("./assets"));
 }
 
@@ -46,7 +43,7 @@ function initBrowserSync() {
   });
 
   const reload = browserSync.reload;
-  watch("./css/src/**/*.scss", scss).on('change', reload);
+  watch("./src/**/*.scss", scss).on('change', reload);
 }
 
 //==== Define complex task ======
@@ -63,3 +60,4 @@ const watchBrowser = series(
 exports.watchBrowser = watchBrowser;
 //exports.js = js;
 exports.css = css;
+exports.default = css;
