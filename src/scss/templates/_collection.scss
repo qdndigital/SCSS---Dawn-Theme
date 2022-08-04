@@ -70,36 +70,37 @@
   }
 
   &__title {
-    .title-wrapper {
-      margin-bottom: 2.5rem;
-    }
+    .title{
+        &:not(:only-child) {
+            margin-bottom: 1rem;
+        }
+        
+        &-wrapper {
+            margin-bottom: 2.5rem;
 
-    .title-wrapper--self-padded-tablet-down {
-      @media screen and (min-width: 990px) {
-        padding: 0 5rem;
-      }
-    }
-
-    .title {
-      &:not(:only-child) {
-        margin-bottom: 1rem;
-      }
+            &--self-padded-tablet-down {
+                @media screen and (min-width: 990px) {
+                    padding: 0 5rem;
+                }
+            }
+        
+        }
     }
 
     &--desktop-slider {
-      @media screen and (min-width: 990px) {
-        .title {
-          margin-bottom: 2.5rem;
+        @media screen and (min-width: 990px) {
+            .title {
+                margin-bottom: 2.5rem;
+                }
+            }
         }
-      }
     }
-  }
 
-  &__view-all {
-    a {
-      &:not(.link) {
-        margin-top: 1rem;
-      }
+    &__view-all {
+        a {
+            &:not(.link) {
+                margin-top: 1rem;
+            }
+        }
     }
-  }
 }
