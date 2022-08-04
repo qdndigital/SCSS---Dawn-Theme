@@ -1,0 +1,222 @@
+.predictive-search {
+	display: none;
+	position: absolute;
+	top: calc(100% + 0.1rem);
+	left: -0.1rem;
+	border-width: var(--popup-border-width);
+	border-style: solid;
+	border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
+	background-color: rgb(var(--color-background));
+	z-index: 3;
+	border-bottom-right-radius: var(--popup-corner-radius);
+	border-bottom-left-radius: var(--popup-corner-radius);
+	box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius) rgba(var(--color-shadow), var(--popup-shadow-opacity));
+
+	@media screen and (max-width: 989px) {
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	@media screen and (min-width: 750px) {
+		border-top: none;
+		width: calc(100% + 0.2rem);
+
+		.header {
+			predictive-search {
+				position: relative;
+			}
+		}
+	}
+
+	.price {
+		margin-top: 0.5rem;
+	}
+
+	&--search-template {
+		z-index: 2;
+	}
+
+	&__heading {
+		border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+		margin: 0 auto;
+		padding: 1.5rem 0 0.75rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: calc(100% - 4rem);
+		color: rgba(var(--color-foreground), 0.7);
+
+		.spinner {
+			margin: 0 0.2rem 0 2rem;
+		}
+	}
+
+	&__list-item {
+		&:nth-last-child(2) {
+			border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+		}
+
+		&:hover {
+			>* {
+				color: rgb(var(--color-foreground));
+				background-color: rgba(var(--color-foreground), 0.04);
+			}
+
+			.predictive-search__item-heading {
+				text-decoration: underline;
+				text-underline-offset: 0.3rem;
+			}
+		}
+
+		&[aria-selected="true"] {
+			>* {
+				color: rgb(var(--color-foreground));
+				background-color: rgba(var(--color-foreground), 0.04);
+			}
+
+			.predictive-search__item-heading {
+				text-decoration: underline;
+				text-underline-offset: 0.3rem;
+			}
+		}
+	}
+
+	&__item {
+		display: flex;
+		padding: 1rem 2rem;
+		text-align: left;
+		text-decoration: none;
+		width: 100%;
+
+		.price {
+			color: rgba(var(--color-foreground), 0.7);
+			font-size: 1.2rem;
+		}
+
+		&--link {
+			display: grid;
+			grid-template-columns: 5rem 1fr;
+			grid-column-gap: 2rem;
+			grid-template-areas: 'product-image product-content';
+		}
+
+		&-content {
+			grid-area: product-content;
+			display: flex;
+			flex-direction: column;
+
+			&--centered {
+				justify-content: center;
+			}
+		}
+
+		&-vendor {
+			font-size: 0.9rem;
+
+			+ {
+				.predictive-search__item-heading {
+					margin-top: 0.5rem;
+				}
+			}
+		}
+
+		&-heading {
+			margin: 0;
+		}
+
+		&--term {
+			justify-content: space-between;
+			align-items: center;
+			padding: 1.3rem 2rem;
+			word-break: break-all;
+			line-height: calc(1 + 0.4 / var(--font-body-scale));
+
+			@media screen and (min-width: 750px) {
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+			}
+
+			.icon-arrow {
+				width: calc(var(--font-heading-scale) * 1.4rem);
+				height: calc(var(--font-heading-scale) * 1.4rem);
+				flex-shrink: 0;
+				margin-left: calc(var(--font-heading-scale) * 2rem);
+				color: rgb(var(--color-link));
+			}
+		}
+
+		&__image {
+			grid-area: product-image;
+			object-fit: contain;
+			font-family: 'object-fit: contain';
+		}
+	}
+
+
+	@media screen and (max-width: 749px) {
+		&--header {
+			right: 0;
+			left: 0;
+			top: 100%;
+		}
+	}
+}
+
+predictive-search {
+
+	&[open] {
+		.predictive-search {
+			display: block;
+		}
+	}
+
+	&[loading] {
+		.predictive-search {
+			display: block;
+
+			&__loading-state {
+				display: flex;
+				justify-content: center;
+				padding: 1rem;
+			}
+
+			&__heading {
+				~ {
+					.predictive-search__loading-state {
+						display: none;
+					}
+				}
+			}
+
+			&__results-list {
+				&:first-child {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&:not([loading]) {
+		.predictive-search {
+			&__heading {
+				.spinner {
+					display: none;
+				}
+			}
+
+			&__loading-state {
+				display: none;
+			}
+
+			&-status__loading {
+				display: none;
+			}
+		}
+	}
+
+	.spinner {
+		width: 1.5rem;
+		height: 1.5rem;
+		line-height: 0;
+	}
+}

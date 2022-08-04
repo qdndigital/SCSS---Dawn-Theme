@@ -1,0 +1,57 @@
+.shopify-model-viewer-ui {
+	&__controls-area {
+		background: rgb(var(--color-background));
+		border-color: rgba(var(--color-foreground), 0.04);
+	}
+
+	&__button {
+		color: rgba(var(--color-foreground), 0.75);
+
+		&--control {
+			&:hover {
+				color: rgba(var(--color-foreground), 0.55);
+			}
+
+			&:active {
+				color: rgba(var(--color-foreground), 0.55);
+				background: rgba(var(--color-foreground), 0.04);
+			}
+
+			&:not(:last-child) {
+				&:after {
+					border-color: rgba(var(--color-foreground), 0.04);
+				}
+			}
+
+			&.focus-visible {
+				&:focus {
+					color: rgba(var(--color-foreground), 0.55);
+					background: rgba(var(--color-foreground), 0.04);
+				}
+			}
+		}
+
+		&--poster {
+			border-radius: 50%;
+			color: rgb(var(--color-foreground));
+			background: rgb(var(--color-background));
+			border-color: rgba(var(--color-foreground), 0.1);
+			transform: translate(-50%, -50%) scale(1);
+			transition: transform var(--duration-short) ease, color var(--duration-short) ease;
+
+			&:hover {
+				transform: translate(-50%, -50%) scale(1.1);
+			}
+
+			&:focus {
+				transform: translate(-50%, -50%) scale(1.1);
+			}
+
+			&-control-icon {
+				width: 4.8rem;
+				height: 4.8rem;
+				margin-top: .3rem;
+			}
+		}
+	}
+}

@@ -1,81 +1,78 @@
 .rich-text {
-	z-index: 1;
-	&:not(.rich-text--full-width) {
-		.rich-text__wrapper {
-			margin: auto;
-			width: calc(100% - 8rem / var(--font-body-scale));
-		}
-	}
-}
-.rich-text__wrapper {
-	display: flex;
-	justify-content: center;
-	width: calc(100% - 4rem / var(--font-body-scale));
-}
-.rich-text__blocks {
-	width: 100%;
-	* {
-		overflow-wrap: break-word;
-	}
-	>* {
-		margin-top: 0;
-		margin-bottom: 0;
-		+ {
-			* {
-				margin-top: 2rem;
-			}
-			a {
-				margin-top: 3rem;
-			}
-		}
-	}
-}
-.rich-text__buttons {
-	display: inline-flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 1rem;
-	width: 100%;
-	max-width: 45rem;
-	word-break: break-word;
-	+ {
-		.rich-text__buttons {
-			margin-top: 1rem;
-		}
-	}
-}
-.rich-text__buttons--multiple {
-	>* {
-		flex-grow: 1;
-		min-width: 22rem;
-	}
-}
-.rich-text__blocks.left {
-	.rich-text__buttons {
-		justify-content: flex-start;
-	}
-}
-.rich-text__blocks.right {
-	.rich-text__buttons {
-		justify-content: flex-end;
-	}
-}
-@media screen and (min-width: 750px) {
-	.rich-text__wrapper {
-		width: 100%;
-	}
-	.rich-text__wrapper--left {
-		justify-content: flex-start;
-	}
-	.rich-text__wrapper--right {
-		justify-content: flex-end;
-	}
-	.rich-text__blocks {
-		max-width: 50rem;
-	}
-}
-@media screen and (min-width: 990px) {
-	.rich-text__blocks {
-		max-width: 78rem;
-	}
+  z-index: 1;
+
+  &:not(&--full-width) &__wrapper {
+    margin: auto;
+    width: calc(100% - 8rem / var(--font-body-scale));
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 4rem / var(--font-body-scale));
+    @media screen and (min-width: 750px) {
+      width: 100%;
+
+      &--left {
+        justify-content: flex-start;
+      }
+      &--right {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__blocks {
+    width: 100%;
+    @media screen and (min-width: 750px) {
+      max-width: 50rem;
+    }
+    @media screen and (min-width: 990px) {
+      max-width: 78rem;
+    }
+
+    * {
+      overflow-wrap: break-word;
+    }
+    > * {
+      margin-top: 0;
+      margin-bottom: 0;
+      + {
+        * {
+          margin-top: 2rem;
+        }
+        a {
+          margin-top: 3rem;
+        }
+      }
+    }
+  }
+
+  &__blocks.left &__buttons {
+    justify-content: flex-start;
+  }
+  &__blocks.right &__buttons {
+    justify-content: flex-end;
+  }
+
+  &__buttons {
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    max-width: 45rem;
+    word-break: break-word;
+
+    & + & {
+      margin-top: 1rem;
+    }
+
+    &--multiple {
+      > * {
+        flex-grow: 1;
+        min-width: 22rem;
+      }
+    }
+  }
 }

@@ -1,11 +1,13 @@
 .product-recommendations {
-	display: block;
-	&:not(.product-recommendations--loaded) {
-		padding: 0;
-		margin: 0;
-	}
-}
-.product-recommendations__heading {
-	margin: 0;
-	margin-bottom: 3rem;
+  display: block;
+
+  &:not(&--loaded) {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__heading {
+    margin: 0;
+    margin-bottom: 3rem;
+  }
 }
